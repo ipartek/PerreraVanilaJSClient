@@ -1,10 +1,8 @@
 console.info('javascript running');
 
 /**
- * 
  * Detecta los cambios en el filtro y realiza una nueva llamda Ajax
- * para refescar la lista
- * 
+ * para refescar la lista con la ordenacion deseada
  */
 function refresh() {
    
@@ -73,6 +71,9 @@ function loaderShow( isVisible = true ){
       elLoader.style.display = 'none';
    }
 }
+//loaderShow
+
+
 
 /**
  * rellena la lista con datos de perros
@@ -96,3 +97,4 @@ function populateList( data ){
   }); // forEach
 
 }
+//populateList
