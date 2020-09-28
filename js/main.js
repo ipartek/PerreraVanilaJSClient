@@ -1,5 +1,32 @@
 console.info('javascript running');
 
+/**
+ * 
+ * Detecta los cambios en el filtro y realiza una nueva llamda Ajax
+ * para refescar la lista
+ * 
+ */
+function refresh() {
+   
+   const order = ( document.getElementById('order').checked ) ? 'desc' : 'asc';
+   const campo = document.getElementById('campo').value;
+   console.debug('cambio filtro order=%s campo=%s', order, campo );
+
+   const url = `http://localhost:8080/perreraWS/service/perro?orderBy=${order}&campo=${campo}`;
+   console.debug(url);
+
+   //llamada Ajax
+   var xhr = new XMLHttpRequest();
+   xhr.open("GET", url );
+   xhr.send();
+   xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+         const perros = JSON.parse(this.responseText);
+         populateList(perros);
+      }   
+   };//onreadystatechange
+
+}// refresh
 
 
 // Evento para ejecutar nuestro codigo JS cuando este todo cragado
@@ -7,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
    
    console.info('DOM cargado');
 
-   const endpoint = 'http://localhost:5500/api/perros.json';
+   const endpoint = 'http://localhost:8080/perreraWS/service/perro?orderBy=asc&campo=nombre';
    console.debug('endpoint %s', endpoint);
 
    // haremos una llamada ajax una vez que este todo cargado  
