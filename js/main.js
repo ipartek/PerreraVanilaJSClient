@@ -1,5 +1,38 @@
 console.info('javascript running');
 
+document.addEventListener('DOMContentLoaded', init() );
+
+/**
+ * Iniclaización de todo lo necsario para la App cuando Arranca
+ * 1. Inicializa Materiale Framework
+ * 2. llamada Ajax para perros
+ * 
+ */
+function init() {
+
+   console.trace('init');
+   // 1  Inicializa Materiale Framework
+   M.AutoInit();
+   console.debug('Inicializado Material Framework');
+ 
+   // 2 llamada Ajax para perros
+   const endpoint = 'http://localhost:8080/perreraWS/service/perro?orderBy=asc&campo=nombre';
+   console.debug('endpoint %s', endpoint);
+
+   var xhttp = new XMLHttpRequest();
+   xhttp.open("GET", endpoint );   
+   xhttp.send();
+   xhttp.onreadystatechange = function() {     
+     if (this.readyState == 4 && this.status == 200) {            
+      const perros = JSON.parse(this.responseText);
+      populateList(perros);
+      loaderShow(false);
+     }
+   };// onreadystatechange
+
+}
+//init
+
 /**
  * Detecta los cambios en el filtro y realiza una nueva llamda Ajax
  * para refescar la lista con la ordenacion deseada
@@ -27,36 +60,7 @@ function refresh() {
 }// refresh
 
 
-// Evento para ejecutar nuestro codigo JS cuando este todo cragado
-document.addEventListener('DOMContentLoaded', function() {
-   
-   console.info('DOM cargado');
 
-   const endpoint = 'http://localhost:8080/perreraWS/service/perro?orderBy=asc&campo=nombre';
-   console.debug('endpoint %s', endpoint);
-
-   // haremos una llamada ajax una vez que este todo cargado  
-   var xhttp = new XMLHttpRequest();
-   xhttp.onreadystatechange = function() {
-
-     console.debug( "readyState %s", this.readyState );      
-     if (this.readyState == 4 && this.status == 200) {
-      
-      console.debug('response esta lita status %s texto %s', this.status, this.responseText );
-      const perros = JSON.parse(this.responseText);
-      populateList(perros);
-      loaderShow(false);
-     }
-
-   };// onreadystatechange
-
-
-   xhttp.open("GET", endpoint );
-   //ATENCION: xhttp.send() hace la petición asincrona 
-   // pero debemos programar la respuesta dentro del metodo "xhttp.onreadystatechange"
-   xhttp.send();
-   
- }); // DOMContentLoaded
 
 
  /**
