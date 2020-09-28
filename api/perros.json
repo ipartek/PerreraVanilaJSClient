@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "nombre": "bubba",
+      "raza": "boxer",
+      "imagen": "https://t2.ea.ltmcdn.com/es/images/3/3/7/img_cuidados_del_boxer_22733_600.jpg",
+      "new": true
+    },
+    {
+      "id": 2,
+      "nombre": "pulgas",
+      "raza": "curce",
+      "imagen": "https://raw.githubusercontent.com/ipartek/perreraClient/master/images/perro_default_avatar.jpg",
+      "new": true
+    },
+    {
+      "id": 3,
+      "nombre": "lazy",
+      "raza": "fosterrier",
+      "imagen": "https://raw.githubusercontent.com/ipartek/perreraClient/master/images/perro_default_avatar.jpg",
+      "new": true
+    }
+  ]
