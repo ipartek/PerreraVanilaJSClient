@@ -57,20 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
    //ATENCION: xhttp.send() hace la petición asincrona 
    // pero debemos programar la respuesta dentro del metodo "xhttp.onreadystatechange"
    xhttp.send();
-
-
-   /*
-   let promesa = ajax( 'get', endpoint);
-   promesa
-   .then( data => {     
-     populateList(data);
-     loaderShow(false);
-   })
-   .catch( error => {
-      console.debug('error %o', error);
-   });
-  */
-
    
  }); // DOMContentLoaded
 
@@ -102,7 +88,7 @@ function populateList( data ){
        
       elLista.innerHTML += `<li class="collection-item avatar">
                                <img src="${perro.imagen}" alt="" class="circle">
-                               <span class="title">${perro.nombre}</span>
+                               <span class="title">${perro.id} <b>${perro.nombre}</b></span>
                                <p>${perro.raza}</p>          
                             </li> `;
 
